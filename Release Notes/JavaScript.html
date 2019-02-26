@@ -1,0 +1,1337 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>JavaScript</title>
+    <style type="text/css">
+        body
+        {
+            font-family: 'Segoe UI',helvetica,arial,sans-serif;
+            font-size: 13px;
+            font-weight: normal; 
+            margin: 0;
+        }
+        a
+        {
+            outline:0;
+        }
+        .copyright
+        {
+            font-size: 11px;
+            color: #A4A7A9;
+            padding-top: 6px;
+        }
+        a.data:hover,a.data:active
+        {
+            color :#F29034 !important;
+        }      
+        div#tabs ul
+        {
+            list-style: none;
+        }
+        div#tabs ul li
+        {
+            float: left;            
+            height:40px;            
+            *height:44px;
+        }
+        div#tabs ul li a
+        {
+            text-decoration: none;
+            font-weight:bold;
+            color:#293674 !important;
+            *cursor:pointer;
+        }        
+        #tabs
+        {
+            margin-top:5px;
+            height:0px;
+            width:280px;
+            float:right;
+        }
+        div#tabs ul li a span
+        {
+             font-size: 12px;
+            line-height :30px; 
+        }
+        div#container-prodtable
+        {            
+            width: 600px;
+            margin-left: 0px;
+            margin-top: 5px;
+            margin-top: 0px;            
+            background-color: white;            
+        }
+        div#container-prodtable ul
+        {
+            margin-top:30px;
+        }
+        div#container-body
+        {
+            border: 0px solid #DDEEF8;
+            width: 580px;
+            margin-left: 25px;
+            border-top:0px solid white;
+            color:#777777;
+            font-size:14px;
+            font-family: 'Segoe UI',helvetica,arial,sans-serif;  
+            clear:both;          
+        }
+        .hovertab
+        {
+            border-bottom: 2px solid #F3F8FB;
+            border-left: 1px solid #DDEEF8;
+            border-top: 1px solid #DDEEF8;
+            border-right: 2px solid #DDEEF8;
+        }
+        .line
+        {
+            height:1px;
+           
+        }
+        #product-header
+        {
+            color:#90AC3D;
+            font-weight: bold;
+            font-size:14px;
+            margin-top:35px;
+            margin-bottom:10px;
+        }
+        .release
+        {
+            padding-left:10px;
+        }
+        div.release ul
+        {
+            padding-left:20px !important;
+            
+        }
+        #activetab
+        {
+            background-color:#7EB200;                        
+            background-repeat:no-repeat;            
+            line-height:30px;
+            color:#FFFFFF;
+            padding-left:4px;
+        }
+        
+        #reportingtab:hover
+        {
+           background-repeat:no-repeat;
+        }
+         #bitab:hover
+        {           
+           background-repeat:no-repeat;
+        }
+       #header
+       {
+           background-color:#282828; 
+       }
+       .header-text
+       {
+           font-size: 23px;
+           font-weight: lighter;  
+           float:right;
+           margin-right:18px; 
+           color:white;  
+           *margin-top:-35px;         
+       }
+       #container-prodtable ul li
+       {
+            background-image: url("bullet.png");
+            background-position: 0 9px;
+            background-repeat: no-repeat;
+            font-size: 15px;
+            list-style:none;
+            float: left;
+            height: 29px;
+            margin-bottom: 10px;
+            padding-left: 17px;
+            width: 165px;
+       }
+       #container-prodtable ul li a
+       {
+          color:#293674; 
+          text-decoration:none;
+       }
+    </style>
+    <script src="jquery.min.js"></script>
+    <script type="text/javascript">
+
+        function change_product(e) {      
+            
+            $("#container-body").css({ "padding-bottom": "0px" });            
+            $("td a").css({ "color": "#293674", "text-decoration": "none" });            
+            $(e).css({ "color": "#90AC3D" });                        
+            var prod = $(e).html();            
+            $("div.line").css({ "display": "block" });
+            $("#product-header").css({ "display": "block" });
+            $("#product-header").html("JavaScript &nbsp;>&nbsp;" + prod);
+            var link = $(e).attr('href');
+            link = link.substring(1, link.length);
+            var a = document.getElementById(link);
+            productlist = document.getElementsByTagName("div");
+            for (var i = 0; i < productlist.length; i++) {
+                if (productlist[i].className == 'release') {
+                    productlist[i].style.display = "none";
+                }
+            }
+            a.style.display = "block";
+        }
+        function goTop(){
+            window.location = '#top';
+        }
+       
+        $(document).ready(function() {       
+            
+            var url = window.location.toString();
+            var pos = url.indexOf("#");
+            var top = url.indexOf("#top");
+                        
+            if (pos != -1 && top == -1) {
+                $(".release").css('display', 'none');
+                url = url.substr(pos, url.length);
+                $("a[href='" + url + "']").css({ "color": "#90AC3D" });                
+                var prod = $("a[href='" + url + "']").html();                
+                $("div.line").css({ "display": "block" });
+                $("#product-header").css({ "display": "block" });
+                $("#product-header").html("JavaScript &nbsp;>&nbsp;" + prod);
+                $(url).attr('style', 'display:block');
+                window.location = location;
+            }
+            else {
+                change_product($("#first"));
+            }
+
+
+        });
+    </script>
+</head>
+<body bgcolor="#F5F5F6">
+    <div style="width:879px;border:1px solid #cccccc; margin:0 auto;">
+    <div>        
+        <table align="center" cellpadding="0" cellspacing="0" bgcolor="white" width="879">
+           <tr>
+              <td>     
+                   <div id="header">                       
+                    <div style="padding-bottom: 5px; background-color: #333333; padding-left: 20px; width: 858px;height:40px; padding-right: 0px; padding-top: 10px;">
+                        <img src="Sync-logo.png"/>
+                        <span class="header-text">Essential Studio 2015 Vol 1 Release Notes</span>
+                    </div>                      
+                   </div>                  
+                </td>
+            </tr>
+            
+            <tr>
+                <td>
+    
+                    <div id="tabs">
+			<ul style="font-size: 12px; padding-left:60px; *margin-left:0px">
+                            <li><a href="ASPMVC.html"><span style="text-align:left;width:210px;display:inline-block">ASP.NET MVC</span></a></li>
+							<li><a href="ASP.html"><span style="text-align:left;width:210px;display:inline-block">ASP.NET</span></a></li>                            
+                            <li><a href="JavaScript.html"><span id="activetab" style="text-align:left;width:210px;display:inline-block">JavaScript</span></a></li>
+                            <li><a href="LightSwitchHTML.html"><span style="text-align:left;width:210px;display:inline-block">LightSwitch HTML</span></a></li>	
+							<li><a href="WPF.html"><span style="text-align:left;width:210px;display:inline-block">WPF</span></a></li>
+							<li><a href="WindowsForms.html"><span style="text-align:left;width:210px;display:inline-block">Windows Forms</span></a></li>
+							<li><a href="WinRT.html"><span style="text-align:left;width:210px;display:inline-block">WinRT</span></a></li>                            
+							<li><a href="WindowsPhoneSL.html"><span style="text-align:left;width:210px;display:inline-block">Windows Phone Silverlight </span></a></li>
+							<li><a href="WindowsPhoneWinRT.html"><span style="text-align:left;width:210px;display:inline-block">Windows Phone WinRT </span></a></li>
+							<li><a href="Universal.html"><span style="text-align:left;width:210px;display:inline-block">Universal</span></a></li>							
+							<li><a href="Silverlight.html"><span style="text-align:left;width:210px;display:inline-block">Silverlight</span></a></li>	
+                             <li><a href="LightSwitchSL.html"><span  style="text-align:left;width:210px;display:inline-block">LightSwitch Silverlight</span></a></li>										
+							<li><a href="ASPMVCClassic.html"><span style="text-align:left;width:210px;display:inline-block">ASP.NET MVC (Classic)</span></a></li>
+							<li><a href="ASPClassic.html"><span style="text-align:left;width:210px;display:inline-block">ASP.NET (Classic)</span></a></li>                            
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="border-right: 1px solid #bbbbbb;width: 628px;margin-top: 21px;float: left; min-height:550px">
+                    <div id="container-prodtable" style="float: left" > 
+                    <h3 style="font-weight: lighter;">
+                    <div class="platform" style="color:#7EB200; padding-left:30px">JavaScript</div></h3>
+                        <ul>
+						<li>
+							<a class="data" id="first" onclick="change_product(this);" href="#JS-Chart">Chart</a></li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Grid">Grid</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-BulletGraph">Bullet Graph</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Gauge">Gauge</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Tools">Tools</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Barcode">Barcode</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Diagram">Diagram</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-OLAP Chart">OLAP Chart</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-OLAP Client">OLAP Client</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-OLAP Gauge">OLAP Gauge</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-RangeNavigator">Range Navigator</a></li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-MobileGrid">Mobile Grid</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-MobileTools">Mobile Tools</a> </li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Gantt">Gantt</a></li>
+							<li> <a class="data" onclick="change_product(this);" href="#JS-Schedule">Schedule</a></li>
+                           <li> <a class="data" onclick="change_product(this);" href="#JS-PivotGrid">PivotGrid</a> </li>
+                           <li> <a class="data" onclick="change_product(this);" href="#JS-Maps">Maps</a> </li>
+                           <li> <a class="data" onclick="change_product(this);" href="#JS-TreeMap">TreeMap</a> </li>
+                           <li> <a class="data" onclick="change_product(this);" href="#JS-TreeGrid">TreeGrid</a> </li>
+						   <li> <a class="data" onclick="change_product(this);" href="#JS-Calculate">Calculate</a> </li>
+                           <li> <a class="data" onclick="change_product(this);" href="#JS-ReportViewer">ReportViewer</a> </li>                           
+						   </ul>
+                     </div>					
+                    <div id="container-body">
+                        <div id="product-header" style="display: none; font-family: 'Segoe UI',helvetica,arial,sans-serif; font-size:18px; font-weight:lighter;">
+                            &nbsp;</div>
+                        <div class="line" style="display: none">
+                            &nbsp;</div>
+                            
+                            <div id="JS-BulletGraph" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+Provided support for trimming title, subtitle and indicator text when it is overlapped with scale group.</pre>
+</li>
+<li>
+Provided support for positioning title, subtitle and indicator text in a predefined positions like Left, Right, Bottom and Top.</pre>
+</li>
+</ul><h4> Breaking-Changes</h4>
+<ul>
+<li>
+Now on changing the orientation of bulletgraph to vertical, the scale alone is rotated and the labels will remain in the user specified location.</pre>
+</li>
+<li>
+On changing the label position, scale location wont change, based on the label position.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Chart" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+Chart now supports 100% Stacking Column Series in 2D and 3D mode.</pre>
+</li>
+<li>
+Chart now supports 100% Stacking Bar Series in 2D and 3D mode.</pre>
+</li>
+<li>
+Chart now supports 100% Stacking Area Series in 2D.</pre>
+</li>
+<li>
+Provided support for Annotation to display metadata about the chart or series at specific point of interest in the plotting area.</pre>
+</li>
+<li>
+Provided support for trimming axis labels when it overlaps.</pre>
+</li>
+<li>
+Provided support for trimming lengthy axis title.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#136235 - Now the tooltip template will be removed after moving mouse outside the chart.</pre>
+</li>
+<li>
+#136235 - Tooltip template will now appear inside the chart.</pre>
+</li>
+<li>
+#135935 - Now empty point will work properly for range area series.</pre>
+</li>
+<li>
+#135793 - Tooltip is working in range area chart..</pre>
+</li>
+<li>
+#135236 - Now zooming will be proper even after zooming the chart behind the chart area.</pre>
+</li>
+<li>
+#134820 - Rotate90 in LabelIntersectAction will now work for lengthy labels.</pre>
+</li>
+<li>
+#135140 - Style tag is removed on destroy method in vml.</pre>
+</li>
+<li>
+#135080 - Now the legend will render properly for multiple chart in vml.</pre>
+</li>
+<li>
+#134956 - sender.cancel argument is now working properly for chart events.</pre>
+</li>
+<li>
+#134576 - Datalabel and connector lines are now updating properly for accumulation series.</pre>
+</li>
+<li>
+#134533 - Stacking Column series is now rendering in canvas mode.</pre>
+</li>
+<li>
+#134476 - Crosshair label now visible after adding series dynamically.</pre>
+</li>
+<li>
+#134027 - Legend is now rendering properly when the legend width is greater than chart width. </pre>
+</li>
+<li>
+#134027 - Now legend is removed from DOM when calling destroy method.</pre>
+</li>
+<li>
+#134081 - Now tooltip is rendering properly for closest points.</pre>
+</li>
+<li>
+#133859 - Console error in chrome on zooming is fixed.</pre>
+</li>
+<li>
+#133567, #134941 - Tooltip closest point issue is fixed.</pre>
+</li>
+<li>
+#132264 - Now the column chart will render from the origin.</pre>
+</li>
+<li>
+#117793 - Tooltip is now rendering properly for pie chart.</pre>
+</li>
+<li>
+#133162 - Exception in chart when special character is used in axis name is fixed.</pre>
+</li>
+<li>
+#136464 - Tooltip is now proper in exporting sample.</pre>
+</li>
+</ul><h4> Breaking-Changes</h4>
+<ul>
+<li>
+Now the tooltip template will be placed based on the chart area.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Grid" class="release" style="display:none">
+<h4> Fixes</h4>
+<ul>
+<li>
+#133320- args.data is defined in the rowSelected event when selectedRowIndex enabled.</pre>
+</li>
+<li>
+#134424- cssClass is applied for button in unbound column.</pre>
+</li>
+<li>
+#133538- Issue with scroller when frozen rows enabled and template column is defined in the movablecontent div has been resolved.</pre>
+</li>
+<li>
+#135287-Event recordDoubleClick is called once when row double click.</pre>
+</li>
+<li>
+#135012-Observablearray with grid datasource is not rendering more than once issue is now resolved.</pre>
+</li>
+<li>
+#133747,#134280-Editing issue with Heirarchy Grid is fixed.</pre>
+</li>
+<li>
+#132781-enable persistence now does not breaks while using excel like filtering.</pre>
+</li>
+<li>
+#133504-FilteredRecords and pager issues are resolved when datasource is set as DataManager with offline mode.</pre>
+</li>
+<li>
+#136241-selectedRows property is working properly.</pre>
+</li>
+<li>
+#136134-Exception is not thrown when enable allowResizeToFit property when grid dataSource is null.</pre>
+</li>
+<li>
+#135869-The first column places the offsetted scroll while sorting the far right column issue is fixed.</pre>
+</li>
+<li>
+#135899-No error when using localization to filter menu.</pre>
+</li>
+<li>
+#135606-The records are now displayed while reordering the Grid columns.</pre>
+</li>
+<li>
+#135436-addRecord UpdateRecord method issue with Unbound Column is resolved.</pre>
+</li>
+<li>
+#133501,#135325-Grid header now moves after resizing with exceeded scroll width.</pre>
+</li>
+<li>
+#130275,#131810,#132187-Moved _ignoreOnExport and batchChanges to public property.</pre>
+</li>
+<li>
+#136174- RowDataBound and QueryCellInfo events are  triggered properly while using frozen columns.</pre>
+</li>
+<li>
+#136134- Exception is not thrown when enable allowResizeToFit property when grid dataSource is null.</pre>
+</li>
+<li>
+#135869 - The first column does not place the offset scroll while sorting the far right column.</pre>
+</li>
+<li>
+#136004- ContextMenu rendered for both parent and child grid when the child grid is rightclicked, is resolved.</pre>
+</li>
+<li>
+#136008- selectRows method works properly while enabling the Virtual scrolling property.</pre>
+</li>
+<li>
+#136008 - Dragging the grid column issue with enable allowReorder and allowResize property has been fixed.</pre>
+</li>
+<li>
+#135606- The records are displayed properly while reordering the Grid columns.</pre>
+</li>
+<li>
+#136557- Expand and Collapse working properly while editing the record.</pre>
+</li>
+<li>
+#133495- Grid virtualscrolling issue in refreshcontent has been resolved.</pre>
+</li>
+<li>
+#136690 - Misalignment issue when editing a record and resizing a column has been fixed.</pre>
+</li>
+<li>
+#135954- Sorting works with null value field when type of column is specified.</pre>
+</li>
+<li>
+#136572- Dropdown items are selected while pressing any alphabets in the keyboard.</pre>
+</li>
+<li>
+#136827-On clicking the header of child grid, child grid collapses and sort icon appended to last column of parent grid issue is resolved.</pre>
+</li>
+<li>
+#135717-When you use contextmenu in grid- rightClick event of the grid is not triggered.</pre>
+</li>
+<li>
+#136098-EnableTouch Property is  working after grid is initialized.</pre>
+</li>
+<li>
+#136690-Included MinWidth in JsDoc.</pre>
+</li>
+<li>
+#136008- Vertical scrollbar alignment missing issue with new dataload has been fixed.</pre>
+</li>
+<li>
+#135586- localization support for boolean column works fine.</pre>
+</li>
+<li>
+#136545,#136975-Compilation error doesnot occur, when generating script for Grid using Typescript.</pre>
+</li>
+<li>
+#135954 - Sorting is working with null value field even when type of column specified.</pre>
+</li>
+<li>
+#135287, #136556, #136487 - Issue in Event recordDoubleClick called twice when row double click is fixed.</pre>
+</li>
+<li>
+#133462- Date format displayed correctly after doing Batch editing.</pre>
+</li>
+<li>
+#136098 - EnableTouch Property is working after grid initialized.</pre>
+</li>
+<li>
+#135869 - Issue in the first column placed in the offsetted scroll while sorting the far right column is fixed.</pre>
+</li>
+<li>
+#135606 - Records are displayed while reordering the Grid columns</pre>
+</li>
+<li>
+#135606 - Data is loaded in Grid when using the AllowVirtualScrolling with remote data</pre>
+</li>
+<li>
+#134814,#135585, #134424 - Issue when using template column in edit mode is fixed</pre>
+</li>
+<li>
+#134349, #135136 - When allowvirtualscrolling selectedrow is working</pre>
+</li>
+<li>
+#134189- Data is rendered when refreshing Grid</pre>
+</li>
+<li>
+#133461- Issue in changing the decimalPlaces and editParams API is fixed</pre>
+</li>
+<li>
+#133495- Grid virtualscrolling issue in refresh content is fixed</pre>
+</li>
+<li>
+#132970,#134435,#134538 - Content misalignment when no vertical scrollbar in IE11 is fixed</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Gauge" class="release" style="display:none">
+<font color=#00AFCC>Common </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>DigitalGauge </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>LinearGauge </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>RadialGauge </font>
+<h4> Features</h4>
+<ul>
+<li>
+ By using the pointer value text feature it is possible to view the pointer value in textual format near the pointer.  The user can enable or disable the display of the pointer value and textual format has been customizable.</pre>
+</li>
+<li>
+ Gauge positioning has been implemented. By using this feature gauge can be positioned in the canvas element with nine positions.</pre>
+</li>
+<li>
+ Start width and end width feature has been extended to the circular gauge. By this we can give different start width and end width for circular ranges. </pre>
+</li>
+</ul>
+</div>
+<div id="JS-Tools" class="release" style="display:none">
+<font color=#00AFCC>AutoComplete </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#134287- Autocomplete suggestion list does not close on each key press.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Accordion </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+<li>
+#136164, #136265- Angular works fine in Accordion control.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Button </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#137162- Clicking on form postback submit button does not post the form in a disabled state now.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Common </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#134830, #134810, #135625- The issues in Typescript file have been fixed.</pre>
+</li>
+<li>
+#F117855- Client-side validation rules for each input have been set.</pre>
+</li>
+</ul>
+<font color=#00AFCC>ColorPicker </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>DatePicker </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#132797-In the DatePicker, Change event returns value as Date Object.</pre>
+</li>
+<li>
+#132797- Issue while clicking the icon for the calendar in any other row than the last row has been fixed.</pre>
+</li>
+<li>
+#F117913- Issue while setting 'startLevel' and 'depthLevel' value as year, the popup does not open with year view has been fixed.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Editors </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135249 - For Editor type controls, while binding 'change' event, the observable variables are updated properly.</pre>
+</li>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+<li>
+#133765- The comma key on the numpad is working.</pre>
+</li>
+</ul>
+<font color=#00AFCC>DateTimePicker </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#134411- DateTimePicker is responsive in iphone.</pre>
+</li>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+<li>
+#133673- mindatetime, maxdatetime are now working properly when you set these valuse dynamically to datetimepicker.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Dialog </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135262- _isValidModelValue does not return an error when tests if actionButtos instanceOf Array.</pre>
+</li>
+<li>
+#F117862,#134293- Issue with minimizing the dialog at initial rendering has been fixed.</pre>
+</li>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+</ul>
+<font color=#00AFCC>DropDownList </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135764-Setting value property (with multiple values that is separated by comma) at the time of initialization now works properly.</pre>
+</li>
+<li>
+#134507-Not able to set the text in the dropdown using zero value issue is now fixed.</pre>
+</li>
+<li>
+#116105-SelectedItemIndex now works well in the Dropdownlist in Remote data.</pre>
+</li>
+<li>
+#136032-Value is set to dropdownlist, when the control is in disabled state.</pre>
+</li>
+<li>
+#132416- When the datasource is changed as empty or null,the model value and model text are now changed in model.</pre>
+</li>
+</ul>
+<font color=#00AFCC>TextBoxes </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>General </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135572- Issue when control is in disabled state, value is not set to the control has been fixed.</pre>
+</li>
+<li>
+#136059 The required script files mentioned in JS API reference link is proper.</pre>
+</li>
+<li>
+#130372,#133426- Issue with the addition of Less files in assets folder in the install has been fixed.</pre>
+</li>
+<li>
+#135132- New api to set the html attributes to the our control element has been added.</pre>
+</li>
+</ul>
+<font color=#00AFCC>NumericTextBox </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#134891- Localization works fine in the NumericTextbox while editing the columns.</pre>
+</li>
+</ul>
+<font color=#00AFCC>MaskEdit </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#134842- Mask character has been changed to a standard one.</pre>
+</li>
+<li>
+#133455-Added missing methods of maskedit control in JSDoc of mask edit control.</pre>
+</li>
+</ul>
+<font color=#00AFCC>RichTextEdior </font>
+<h4> Features</h4>
+<ul>
+<li>
+New and improved insert image option with predefined directory browsing support.  Allows you to upload your own images to the current directory. </pre>
+</li>
+<li>
+New option for inserting the file from predefined directory to the RichTextEditor control. Allows you to upload your own files to the current directory.</pre>
+</li>
+</ul>
+<font color=#00AFCC>FileExplorer </font>
+<h4> Features</h4>
+<ul>
+<li>
+File explorer is a JavaScript control that has Windows Explorer-like functionality. It allows end-users to access and manage the file system through the browser.  File explorer can perform the following functionalities: copy, move, add, rename, search, sort, and delete files or folders as well as upload files.  File explorer layout and management capabilities are fully customizable and can be disabled/ enabled when necessary.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#134123- Issue with File explorer integration with RTE control has been fixed.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Split Button </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>Splitter </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Scrollbar </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#132919- The third paramaeter from the scrollY method in scroller has been removed.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Tab </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#133161-JS Doc is correct for ejTab control public methods.</pre>
+</li>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+</ul>
+<font color=#00AFCC>TileView </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>TreeView </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135253-Drag and Drop is supported in Treeview Template Feature.</pre>
+</li>
+<li>
+#132527- htmlattribute works fine in Treeview.</pre>
+</li>
+<li>
+#136766- Drag and drop works fine for the pasted node in Treeview.</pre>
+</li>
+<li>
+#136766- expanded:true is fully expanded when changing list data.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Toolbar </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Upload Box </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#136059- Able to specify more than two extension in 'allowExtension' method of Uploadbox.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Input Controls </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>Radial Menu </font>
+<h5> There is no change in this product.</h5>
+</ul>
+<font color=#00AFCC>Ribbon </font>
+<h4> Features</h4>
+<ul>
+<li>
+Resizing support for Ribbon has been provided</pre>
+</li>
+<li>
+Gallery support for Ribbon has been provided</pre>
+</li>
+<li>
+Angular Support for Ribbon has been provided</pre>
+</li>
+<li>
+Custom ToolTip for Ribbon controls has been provided</pre>
+</li>
+</ul>
+<font color=#00AFCC>TagCloud </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135812 - The JsDoc for HTMLAttributes property in Tagcloud component has been changed.</pre>
+</li>
+</ul>
+<font color=#00AFCC>CheckBox </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#136724-Set checked API in checkbox as observable to support two way binding issue has been resolved.</pre>
+</li>
+<li>
+#136724- Issue while setting checked API in checkbox as observable to support two way binding and incorrect Checkbox input tag has been fixed.</pre>
+</li>
+</ul>
+<font color=#00AFCC>ListBox </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#135390-refresh method is now added in Listbox control.</pre>
+</li>
+<li>
+#135390- Event that fires when loading of all elements gets completed has been added.</pre>
+</li>
+<li>
+#135263- An API for Enabling/Disabling a single item to listbox has been added.</pre>
+</li>
+</ul>
+<font color=#00AFCC>ListView </font>
+<h4> Features</h4>
+<ul>
+<li>
+This control has been moved from preview to the final state.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Navigation Drawer </font>
+<h4> Features</h4>
+<ul>
+<li>
+This control has been moved from preview to the final state.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Tile </font>
+<h4> Features</h4>
+<ul>
+<li>
+This control has been moved from preview to the final state.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Menu </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+<li>
+#133080- Parent div's context menu is not referred now while clicking on child div.</pre>
+</li>
+</ul>
+<font color=#00AFCC>Slider </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#130580- Control name consistency is maintained by a common name throughout the entire documentation.</pre>
+</li>
+</ul>
+<font color=#00AFCC>ToggleButton </font>
+<h4> Fixes</h4>
+<ul>
+<li>
+#133604- Checked state checkbox is rendered to the Toggle button, and new toggle buton is present in the checked state.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-PivotGrid" class="release" style="display:none">
+<h4> Fixes</h4>
+<ul>
+<li>
+#134795- Value format is shown exactly from Cube value.</pre>
+</li>
+</ul><h4> Features</h4>
+<ul>
+<li>
+ #103749, #110817 - Responsive layout support has been provided.</pre>
+</li>
+<li>
+ #131437 - Bootstrap theme support has been provided.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Barcode" class="release" style="display:none">
+</ul>
+<h5> There is no change in this product.</h5>
+</div>
+<div id="JS-Diagram" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+#135950,132724 - Phase Support for Swimlane has been provided.</pre>
+</li>
+<li>
+#135950 - Serialization support for Swimlane node is provided.</pre>
+</li>
+<li>
+Drawing Tool Support has been implemented.</pre>
+</li>
+<li>
+Data binding support in Html Table format has been implemented.</pre>
+</li>
+<li>
+Text Wrapping options are provided.</pre>
+</li>
+<li>
+Support to customize organizational chart is added.</pre>
+</li>
+<li>
+Predefined Basic, Flow and BPMN shapes are added.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#134655 - Swimlane Resize issue is fixed.</pre>
+</li>
+<li>
+#134458 - Issue in rendering group node at runtime has been resolved.</pre>
+</li>
+<li>
+#136560 - Connectors are now updated in case of node with multiple parents.</pre>
+</li>
+<li>
+#135910 - Issue with connectors visibility has been fixed.</pre>
+</li>
+<li>
+#135910 - Issue with Html node, while performing expand or collapse has been fixed.</pre>
+</li>
+<li>
+#136274- Issue with diagram shortcut keys in Mac OS has been fixed.</pre>
+</li>
+<li>
+#135950- Issue in the custom properties for the lane is fixed.</pre>
+</li>
+</ul><h4> Breaking-Changes</h4>
+<ul>
+<li>
+Node.Shape property is depreciated.</pre>
+</li>
+<li>
+Instead of Shape.CornerRadius property, use Node.CornerRadius.</pre>
+</li>
+<li>
+Instead of Shape.PathData property, use Node.PathData.</pre>
+</li>
+<li>
+Instead of Shape.Src property, use Node.Source.</pre>
+</li>
+<li>
+Instead of Shape.TextBlock property, use Node.TextBlock.</pre>
+</li>
+<li>
+Instead of Shape.Points property, use Node.Points.</pre>
+</li>
+<li>
+Instead of Shape.TemplateId property, use Node.TemplateId.</pre>
+</li>
+<li>
+Instead of Shape.Type property, use Node.Type.</pre>
+</li>
+<li>
+Node,Connector and group's Type property is changed. Instead of that, use Diagram.getObjectType().</pre>
+</li>
+<li>
+Diagram.exportAsImage API is changed as exportDiagram and options are provided through arguments.</pre>
+</li>
+<li>
+Label.WrapText property is renamed as Wrapping.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-OLAP Chart" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+ #103749, #110817 - Responsive layout support has been provided.</pre>
+</li>
+<li>
+ #131437 -Bootstrap theme support has been provided.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-OLAP Client" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+ #103749, #110817 - Responsive layout support has been provided.</pre>
+</li>
+<li>
+ #131437 - Bootstrap theme support has been provided.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-OLAP Gauge" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+ #103749, #110817 - Responsive layout support has been provided.</pre>
+</li>
+<li>
+ #131437 - Bootstrap theme support has been provided.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Maps" class="release" style="display:none">
+<h4> Fixes</h4>
+<ul>
+<li>
+ #135233 - Responsive behaviour lacking on maps has been fixed  </pre>
+</li>
+</ul>
+</div>
+<div id="JS-TreeMap" class="release" style="display:none">
+<h4> Fixes</h4>
+<ul>
+<li>
+ #135574 - Circular Call-out issues issue is now fixed using the helper function API "addition" </pre>
+</li>
+</ul><h4> Features</h4>
+<ul>
+<li>
+ GroupColorMapping API has been implemented </pre>
+</li>
+</ul>
+</div>
+<div id="JS-MobileGrid" class="release" style="display:none">
+<font color=#00AFCC>Grid </font>
+</ul>
+<h5> There is no change in this product.</h5>
+</div>
+<div id="JS-MobileTools" class="release" style="display:none">
+<font color=#00AFCC>Navigation Drawer </font>
+<h4> Features</h4>
+<ul>
+<li>
+This control has been moved from preview to the final state.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-RangeNavigator" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+Provided support for customization of thumb with template. </pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#132899 - Fixed the exception when display is set to none for rangenavigator.</pre>
+</li>
+</ul><h4> Breaking-Changes</h4>
+<ul>
+<li>
+In horizontalTextAlignment Enum, Center Value is changed to Middle.</pre>
+</li>
+<li>
+ej.rangenavigator.js will now require ej.chart.js file as dependency to render RangeNavigator control.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Gantt" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+#129289,#133671,#134981,#135019 - Provided support for Hour-Minute Schedule mode.</pre>
+</li>
+<li>
+#134442,#135722 - Provided support for splitter position in Gantt view.</pre>
+</li>
+<li>
+Implemented the coloumn chooser feature.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#135879 - Localization issue in predecessor fields of dialog box is no more reproduced.</pre>
+</li>
+<li>
+#135719 - Fixed the issues in headerText property of custom context menu items.</pre>
+</li>
+<li>
+#135866 - Auto validation of milestone start date is removed.</pre>
+</li>
+<li>
+#135880 - Context menu will not appear with an empty data source.</pre>
+</li>
+<li>
+#135898 - Validating end date with date format in dialog box issue is fixed.</pre>
+</li>
+<li>
+#133390 - Fixed the rendering and editing issue in Unobtrusive Javascript enabled mode.</pre>
+</li>
+<li>
+#133671 - Fixed endEdit clientside event issue.</pre>
+</li>
+<li>
+#134330 - Fixed the label issue of custom columns in Edit dialog box.</pre>
+</li>
+<li>
+#133671 - Fixed the issue on week schedule mode when modifying timescales.</pre>
+</li>
+<li>
+#134550 - Fixed the issues while editing custom column with combo box.</pre>
+</li>
+<li>
+#134624 - Fixed the issue while updating predecessor field with database.</pre>
+</li>
+<li>
+#134624 - Fixed the issues while updating parent id during outdent.</pre>
+</li>
+<li>
+#134817 - Fixed the issues in Dateformat cell edit. </pre>
+</li>
+<li>
+#134895 - Currency textbox, percentage textbox and mask edit textbox support given for custom columns.</pre>
+</li>
+<li>
+#134961 - Culture issue in dialog box is fixed.</pre>
+</li>
+<li>
+#134981 - Fixed the mile stone validation issue in Day-Hour Schedule mode.</pre>
+</li>
+<li>
+#135032 - Fixed the issues in Multiple Gantt control with in same page.</pre>
+</li>
+<li>
+#134817 - Fixed the issue while adding first record as milestone.</pre>
+</li>
+<li>
+#135638 - Fixed the Dateformat issues in Striplines and Holidays.</pre>
+</li>
+<li>
+#135978 - Validated negative selected row indexes dynamically.</pre>
+</li>
+<li>
+#136235 - Switch EnableCollapseAll property dynamically through setmodel.</pre>
+</li>
+<li>
+#136135 – Implemented Refresh public method for TreeGrid control.</pre>
+</li>
+<li>
+#136290 – Fixed the DataType issue of AddDialogFilelds in UnobtrusiveJavascript enabled mode.</pre>
+</li>
+</ul><h4> Breaking-Changes</h4>
+<ul>
+<li>
+Now the mouse hover tooltip will be rendered with 700 milliseconds time delay.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Schedule" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+An adaptive functionality support has been newly added to the Schedule control with an additional API, isResponsive, to handle it.</pre>
+</li>
+<li>
+A new API, showAllDayRow, has been newly introduced to show/hide the all-day rows within the Schedule control.</pre>
+</li>
+<li>
+Another API, enableLoadOnDemand, has been newly added to enable/disable the loading of the Schedule data on demand.</pre>
+</li>
+<li>
+Schedule Performance related improvements have been done for multiple resource concept.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#132433 - An issue with weekly recurrence appointment has been fixed and can now be rendered properly.</pre>
+</li>
+<li>
+#133273 - Appointments are rendering while binding the field names other than "StartTime and EndTime". </pre>
+</li>
+<li>
+#132062 - Appointment Search is working properly while binding the Schedule data using URL method. </pre>
+</li>
+<li>
+#135342 - Schedule Next/Previous navigation buttons aligned properly. </pre>
+</li>
+<li>
+#135120 - Alignment issue in schedule control while running the sample in Safari browser is resolved.</pre>
+</li>
+<li>
+#134446- Appointments are correctly displayed in month while creating the more than one appointment in the template sample.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-TreeGrid" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+#131498,#132461,#133205 - Implemented the Row Drag and Drop feature.</pre>
+</li>
+<li>
+Implemented the coloumn chooser feature.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#135719 - Fixed the issues in headerText property of custom context menu items.</pre>
+</li>
+<li>
+#133603 - Implemented client side method for adding new child rows.</pre>
+</li>
+<li>
+#133390 - Fixed rendering and editing issue in Unobtrusive Javascript enabled mode.</pre>
+</li>
+<li>
+#132461 - Fixed issue with dynamically adding new columns.</pre>
+</li>
+<li>
+#134817 - Issue in Date format during cell editing is fixed.</pre>
+</li>
+<li>
+#135719 - Issue in headerText property of custom context menu items has been fixed.</pre>
+</li>
+</ul><h4> Breaking-Changes</h4>
+<ul>
+<li>
+Now the mouse hover tooltip will be rendered with 700 milliseconds time delay.</pre>
+</li>
+<li>
+TreeGridEditMode.rowEditing has been deprecated to TreeGridEditMode.RowEditing.</pre>
+</li>
+<li>
+Columns.headerText has been deprecated to Columns.HeaderText.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-ReportViewer" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+Page Settings support is added.</pre>
+</li>
+<li>
+Parameter Block Customization support is added.</pre>
+</li>
+<li>
+Interactive Sort support is added to Tablix Item.</pre>
+</li>
+<li>
+Report and Global Variables support are added.</pre>
+</li>
+</ul><h4> Fixes</h4>
+<ul>
+<li>
+#134601 - Report viewer does not show number value instead of text value.</pre>
+</li>
+<li>
+#134601 - Proper rendering of parameter values.</pre>
+</li>
+<li>
+#134601-Dataset values are now rendered properly with parameter.</pre>
+</li>
+<li>
+#134601-Issue of setting the value for dependent parameters is resolved.</pre>
+</li>
+<li>
+#134601-ArgumentNullException is not thrown when image with value is null in ReportViewer.</pre>
+</li>
+<li>
+#134601-Need to expose all property for suppressing the mobile mode in mobile device issue is now fixed.</pre>
+</li>
+<li>
+#134601-Tooltip doesn't disappear when you go to next or previous page issue is now fixed.</pre>
+</li>
+<li>
+#134601-ArgumentNullException is not thrown when image value is null in ReportViewer.</pre>
+</li>
+<li>
+#134601-Exposed all properties for suppressing the mobile mode in mobile device.</pre>
+</li>
+<li>
+#134601-Tooltip now disappears when you go to next or previous page.</pre>
+</li>
+<li>
+#134601-Displayed print option now works fine when it is clicked.</pre>
+</li>
+<li>
+#135283,#135345-Performance issue in Excel ReportWriter is now resolved.</pre>
+</li>
+<li>
+#134601-Export option is displayed but nothing happens when you click on it issue is now fixed.</pre>
+</li>
+<li>
+#135897-Specifying the null values as (Null) is working in ReportViewer.</pre>
+</li>
+<li>
+#135897-Allow null value works properly in dataset query.</pre>
+</li>
+<li>
+#135860-Using MultiValue parameter as query parameter doesnot throw exception.</pre>
+</li>
+<li>
+#136549-Export is now working in the windows authentication mode.</pre>
+</li>
+<li>
+#135632- Content is not printed over the footer.</pre>
+</li>
+</ul>
+</div>
+<div id="JS-Calculate" class="release" style="display:none">
+<h4> Features</h4>
+<ul>
+<li>
+CalcQuick support is implemented</pre>
+</li>
+</ul>
+</div>
+<div style='clear:both;height:10px;*height:50px;'><img onclick='goTop()'style=' cursor:pointer;float:right;padding-right: 24px' src="Arrow.png"></div><div style='clear:both;height:30px'><p style='clear:both' float=right><font size=2><a style='float:right;' href=#top>Back to Top</a></font></p></div>
+</div></td></tr><tr><td><img src="Footer.jpg" alt="Footer" /></td></tr></table></div></body></html>
