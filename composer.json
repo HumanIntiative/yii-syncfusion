@@ -1,0 +1,12 @@
+{
+    "name": "pkpudev/yii-syncfusion",
+    "description": "Js SyncFusion",
+    "keywords": ["yii", "extension", "js", "syncfusion"],
+    "type": "yii-extension",
+    "authors": [
+        {
+            "name": "Zein Miftah",
+            "email": "zeinmiftah@gmail.com"
+        }
+    ]
+}
